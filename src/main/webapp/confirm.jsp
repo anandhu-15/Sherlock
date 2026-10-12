@@ -27,23 +27,14 @@
     <p>Your <strong><c:out value="${item.type}" /></strong> report for
        &ldquo;<c:out value="${item.name}" />&rdquo; has been saved.</p>
 
-    <%-- Show the token ONLY to the person who reported a LOST item --%>
-    <c:if test="${not empty token and item.type eq 'LOST'}">
+    <%-- If a match is found, show the token clearly to both LOST and FOUND --%>
+    <c:if test="${not empty token}">
         <div class="match-box">
             <h2>&#127881; Match Found!</h2>
-            <p>Your item matched with an existing FOUND report! Use this token
-               to collect your item from the admin office:</p>
+            <p>Your report has matched with an existing <c:out value="${item.type eq 'LOST' ? 'FOUND' : 'LOST'}" /> item!
+               Use this 6-character token to complete the handover at the admin office:</p>
             <p class="token"><c:out value="${token}" /></p>
-            <p><strong>Keep this token safe!</strong> The admin will verify it
-               before handing over the item.</p>
-        </div>
-    </c:if>
-
-    <c:if test="${not empty token and item.type eq 'FOUND'}">
-        <div class="match-box">
-            <h2>&#127881; Match Found!</h2>
-            <p>Great news! Your found item matched with a lost item report.
-               The owner has been linked. Please hand the item to the admin office.</p>
+            <p><strong>Note down this token!</strong> The admin verifies this token on the Handover page to mark the item as returned.</p>
         </div>
     </c:if>
 
