@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- ===== Filter: protect /admin/* pages ===== -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>sherlock.web.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ===== Servlets ===== -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>sherlock.web.HomeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>sherlock.web.ReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/report</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ItemsServlet</servlet-name>
+        <servlet-class>sherlock.web.ItemsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemsServlet</servlet-name>
+        <url-pattern>/items</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>sherlock.web.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HandoverServlet</servlet-name>
+        <servlet-class>sherlock.web.HandoverServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandoverServlet</servlet-name>
+        <url-pattern>/admin/handover</url-pattern>
+    </servlet-mapping>
+
+    <!-- "/" serves index.jsp which forwards to /home -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
